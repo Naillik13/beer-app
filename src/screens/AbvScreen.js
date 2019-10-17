@@ -9,11 +9,11 @@ export default class AbvScreen extends React.Component {
         this.state ={ isLoading: false}
     }
 
-    _onPress = (code) => {
+    _onPress = (id) => {
         const pushAction = StackActions.push({
             routeName: 'Details',
             params: {
-                productCode: code,
+                id: id,
             },
         });
         this.props.navigation.navigate(pushAction);
@@ -45,7 +45,7 @@ export default class AbvScreen extends React.Component {
                 style={{width:"100%", marginTop: 20}}
                 data={this.state.beers}
                 renderItem={({ item }) =>
-                    <TouchableOpacity onPress={() => alert("test")} style={[{flexDirection: "row"}, styles.container, styles.card]}>
+                    <TouchableOpacity onPress={() => this._onPress(item.id)} style={[{flexDirection: "row"}, styles.container, styles.card]}>
                         <Image resizeMode={'contain'} style={{width: 100, height: 100 }} source={{ uri: item.image_url }} />
                         <View style={{ flex:1, height: 100, justifyContent: "space-around", flexDirection: "column"}}>
                             <Text style={styles.date}>{item.first_brewed} - <Text style={{color: Colors.tintColor}}>{item.abv}°</Text></Text>
@@ -54,7 +54,7 @@ export default class AbvScreen extends React.Component {
                         </View>
                     </TouchableOpacity>
                 }
-                keyExtractor={({ id }, index) => id}
+                keyExtractor={({ id }, index) => id.toString()}
             />)
         }
     };

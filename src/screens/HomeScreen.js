@@ -1,6 +1,7 @@
 import React from "react"
 import {StyleSheet, ActivityIndicator, Image, Text, Button, View} from "react-native";
 import Colors from "../constants/Colors"
+import BeerDetails from "../components/BeerDetails";
 export default class HomeScreen extends React.Component {
     constructor(props){
         super(props);
@@ -39,25 +40,7 @@ export default class HomeScreen extends React.Component {
         } else if (this.state.beer !== undefined){
             return(
                 <View style={{flex: 1, paddingTop:20}}>
-                    <View style={[{flexDirection: "row", alignItems: "center"}, styles.container, styles.card]}>
-                        <Image resizeMode={'contain'} style={{ alignSelf: "center", width: 100, height: 100 }} source={{ uri: this.state.beer.image_url }} />
-                        <View style={{flex:1, height: 100, justifyContent: "space-around", flexDirection: "column"}}>
-                            <Text style={styles.date}>{this.state.beer.first_brewed} - <Text style={{color: Colors.tintColor}}>{this.state.beer.abv}°</Text></Text>
-                            <Text style={styles.title}>{this.state.beer.name}</Text>
-                            <Text style={styles.subline}>{this.state.beer.tagline}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.container}>
-                        <Text style={[styles.title, {marginBottom: 10}]}>Some informations about the <Text style={{color: Colors.tintColor}}>{this.state.beer.name}</Text></Text>
-                        <Text style={{color: Colors.textColor}}>{this.state.beer.description}</Text>
-                        <Text style={styles.subtitle}>Brewers tips</Text>
-                        <Text style={{color: Colors.textColor}}>{this.state.beer.brewers_tips}</Text>
-                        <Text style={styles.subtitle}>Want to eat ?</Text>
-                        <Text style={{color: Colors.titleColor, marginBottom:3}}>You can try our next <Text style={{color: Colors.tintColor}}>suggestions</Text></Text>
-                        {this.state.beer.food_pairing.map(food => (
-                            <Text key={food} style={{color: Colors.textColor}}>- {food}</Text>
-                        ))}
-                    </View>
+                    <BeerDetails beer={this.state.beer}/>
                     <View style={[styles.separator, styles.container]} />
                     <Button color={Colors.tintColor} title="Find Another Beer" onPress={() => this.getRandomBeer()}/>
                 </View>

@@ -1,5 +1,6 @@
 import React from "react"
 import {Text, View, FlatList, ActivityIndicator} from "react-native";
+import BeerDetails from "../components/BeerDetails";
 
 export default class DetailsScreen extends React.Component {
     constructor(props){
@@ -8,13 +9,13 @@ export default class DetailsScreen extends React.Component {
     }
 
     componentDidMount(){
-        return fetch('https://api.punkapi.com/v2/beers/random')
+        return fetch('https://api.punkapi.com/v2/beers/' + this.props.navigation.getParam("id"))
             .then((response) => response.json())
             .then((responseJson) => {
 
                 this.setState({
                     isLoading: false,
-                    beer: responseJson,
+                    beer: responseJson[0],
                 }, function(){
 
                 });
@@ -37,9 +38,10 @@ export default class DetailsScreen extends React.Component {
 
         return(
             <View style={{flex: 1, paddingTop:20}}>
-                <Text>{this.state.beer.name}</Text>
+                <BeerDetails beer={this.state.beer}/>
             </View>
         );
     }
 
 }
+
