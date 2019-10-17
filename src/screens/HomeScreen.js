@@ -2,6 +2,7 @@ import React from "react"
 import {StyleSheet, ActivityIndicator, Image, Text, Button, View} from "react-native";
 import Colors from "../constants/Colors"
 import BeerDetails from "../components/BeerDetails";
+import {StackActions} from "react-navigation";
 export default class HomeScreen extends React.Component {
     constructor(props){
         super(props);
@@ -19,9 +20,14 @@ export default class HomeScreen extends React.Component {
                 this.setState({
                     isLoading: false,
                     beer: responseJson[0],
-                }, function(){
-
                 });
+                const pushAction = StackActions.push({
+                    routeName: 'Details',
+                    params: {
+                        id: responseJson[0].id,
+                    },
+                });
+                this.props.navigation.navigate(pushAction);
 
             })
             .catch((error) =>{
@@ -37,14 +43,6 @@ export default class HomeScreen extends React.Component {
                     <ActivityIndicator/>
                 </View>
             )
-        } else if (this.state.beer !== undefined){
-            return(
-                <View style={{flex: 1, paddingTop:20}}>
-                    <BeerDetails beer={this.state.beer}/>
-                    <View style={[styles.separator, styles.container]} />
-                    <Button color={Colors.tintColor} title="Find Another Beer" onPress={() => this.getRandomBeer()}/>
-                </View>
-            );
         }
 
         return(
