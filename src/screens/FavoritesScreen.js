@@ -50,6 +50,11 @@ export default class AbvScreen extends React.Component {
     };
 
     loadFavorites() {
+        if (this.state.beers.length > 0) {
+            this.setState({
+                beers: []
+            })
+        }
         this._retrieveFavorite()
             .then(response => {
                 let favorites = response !== undefined ? JSON.parse(response)  : [];
@@ -85,6 +90,7 @@ export default class AbvScreen extends React.Component {
                 <NavigationEvents onDidFocus={() => this.loadFavorites()}/>
                 <View style={{flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                     <Text style={styles.title}>Your Favorites Beer</Text>
+                    {console.log(this.state.beers)}
                     <Text style={{color: Colors.textColor, marginTop: 10}}>Here is all your favorites beer!</Text>
                 </View>
                 <BeerList beers={this.state.beers} navigation={this.props.navigation}/>
