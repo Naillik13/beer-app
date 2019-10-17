@@ -32,6 +32,7 @@ export default class AbvScreen extends React.Component {
                 })
             })
             .catch((error) =>{
+                alert("An error has occurred");
                 console.error(error);
             });
     }
@@ -44,7 +45,7 @@ export default class AbvScreen extends React.Component {
                 return value
             }
         } catch (error) {
-            // Error retrieving data
+            alert("An error has occurred while retrieving favorites");
         }
     };
 
@@ -64,6 +65,7 @@ export default class AbvScreen extends React.Component {
 
             })
             .catch((error) => {
+                alert("An error has occurred while retrieving favorites");
                 console.error(error);
             });
     }

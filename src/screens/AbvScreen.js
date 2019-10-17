@@ -26,6 +26,7 @@ export default class AbvScreen extends React.Component {
 
             })
             .catch((error) =>{
+                alert("An error has occurred while fetching beer list");
                 console.error(error);
             });
     };

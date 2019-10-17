@@ -43,7 +43,7 @@ export default class DetailsScreen extends React.Component {
                 return value
             }
         } catch (error) {
-            // Error retrieving data
+            alert("An error has occurred while retrieving favorites");
         }
     };
 
@@ -62,17 +62,16 @@ export default class DetailsScreen extends React.Component {
             await AsyncStorage.setItem('@Favorite:beers', JSON.stringify(newArray));
             return newArray
         } catch (error) {
-            // Error retrieving data
+            alert("An error has occurred while updating favorites");
         }
     };
 
     _updateFavorite = () => {
         this._updateFavoriteStorage(!this.props.navigation.state.params.isFavorite)
             .then(res => {
-                this.props.navigation.setParams({isFavorite: !this.props.navigation.state.params.isFavorite});
-                this.props.navigation.setParams({favoritesNumber: res.length});
-            }
-
+                    this.props.navigation.setParams({isFavorite: !this.props.navigation.state.params.isFavorite});
+                    this.props.navigation.setParams({favoritesNumber: res.length});
+                }
             );
         };
 
@@ -90,6 +89,7 @@ export default class DetailsScreen extends React.Component {
 
             })
             .catch((error) => {
+                alert("An error has occurred while retrieving favorites");
                 console.error(error);
             });
     }
@@ -108,6 +108,7 @@ export default class DetailsScreen extends React.Component {
 
             })
             .catch((error) =>{
+                alert("An error has occurred while fetching beer");
                 console.error(error);
             });
     }

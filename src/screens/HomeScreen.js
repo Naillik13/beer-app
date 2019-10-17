@@ -31,9 +31,10 @@ export default class HomeScreen extends React.Component {
 
             })
             .catch((error) =>{
+                alert("An error has occurred while fetching random beer");
                 console.error(error);
             });
-    }
+    };
 
     render(){
 
