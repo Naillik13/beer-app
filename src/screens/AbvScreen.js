@@ -55,7 +55,7 @@ export default class AbvScreen extends React.Component {
                     <Text style={{fontWeight: "bold", color: Colors.tintColor, marginTop:10}}>{this.state.abv !== undefined ? this.state.abv : "0.0"}</Text>
                     <Slider
                         step={.1}
-                        value={this.state.abv !== undefined ? this.state.abv : 0}
+                        value={this.state.abv !== undefined ? parseFloat(this.state.abv) : 0}
                         maximumValue={20}
                         style={{ width: 300 }}
                         onValueChange={value => this.updateAbvUI(parseFloat(value).toFixed(1))}
