@@ -1,6 +1,6 @@
 import React from "react"
 import {StyleSheet, ActivityIndicator, Image, Text, Button, View} from "react-native";
-
+import Colors from "../constants/Colors"
 export default class HomeScreen extends React.Component {
     constructor(props){
         super(props);
@@ -42,31 +42,36 @@ export default class HomeScreen extends React.Component {
                     <View style={[{flexDirection: "row", alignItems: "center"}, styles.container, styles.card]}>
                         <Image resizeMode={'contain'} style={{ alignSelf: "center", width: 100, height: 100 }} source={{ uri: this.state.beer.image_url }} />
                         <View style={{flex:1, height: 100, justifyContent: "space-around", flexDirection: "column"}}>
-                            <Text style={styles.date}>{this.state.beer.first_brewed} - <Text style={{color:"#739340"}}>{this.state.beer.abv}°</Text></Text>
+                            <Text style={styles.date}>{this.state.beer.first_brewed} - <Text style={{color: Colors.tintColor}}>{this.state.beer.abv}°</Text></Text>
                             <Text style={styles.title}>{this.state.beer.name}</Text>
                             <Text style={styles.subline}>{this.state.beer.tagline}</Text>
                         </View>
                     </View>
                     <View style={styles.container}>
-                        <Text style={[styles.title, {marginBottom: 10}]}>Some informations about the <Text style={{color: "#739340"}}>{this.state.beer.name}</Text></Text>
-                        <Text style={{color: "#666666"}}>{this.state.beer.description}</Text>
+                        <Text style={[styles.title, {marginBottom: 10}]}>Some informations about the <Text style={{color: Colors.tintColor}}>{this.state.beer.name}</Text></Text>
+                        <Text style={{color: Colors.textColor}}>{this.state.beer.description}</Text>
                         <Text style={styles.subtitle}>Brewers tips</Text>
-                        <Text style={{color: "#666666"}}>{this.state.beer.brewers_tips}</Text>
+                        <Text style={{color: Colors.textColor}}>{this.state.beer.brewers_tips}</Text>
                         <Text style={styles.subtitle}>Want to eat ?</Text>
-                        <Text style={{color: "#383838", marginBottom:3}}>You can try our next <Text style={{color: "#739340"}}>suggestions</Text></Text>
+                        <Text style={{color: Colors.titleColor, marginBottom:3}}>You can try our next <Text style={{color: Colors.tintColor}}>suggestions</Text></Text>
                         {this.state.beer.food_pairing.map(food => (
-                            <Text key={food} style={{color: "#666666"}}>- {food}</Text>
+                            <Text key={food} style={{color: Colors.textColor}}>- {food}</Text>
                         ))}
                     </View>
                     <View style={[styles.separator, styles.container]} />
-                    <Button color="#739340" title="Find Another Beer" onPress={() => this.getRandomBeer()}/>
+                    <Button color={Colors.tintColor} title="Find Another Beer" onPress={() => this.getRandomBeer()}/>
                 </View>
             );
         }
 
         return(
-            <View style={{flex: 1, paddingTop:20}}>
-                <Button title="Random Beer" onPress={() => this.getRandomBeer()}/>
+            <View style={{flex: 1, paddingTop:20, alignItems: "center", justifyContent: "center"}}>
+                <Text style={[styles.title, {marginBottom: 10}]}>Welcome to your new <Text style={{color: Colors.tintColor}}>beer</Text> library.</Text>
+                <Text style={{textAlign: "center", color: Colors.textColor}}>Here you can find beers of any kind, filtering by degree for example or looking for a name.</Text>
+                <Text style={{color: Colors.textColor}}>But for now, why not start by finding a random beer?</Text>
+                <Text style={{color: Colors.textColor}}>And may be discovering a new one!</Text>
+                <View style={[styles.separator, styles.container]} />
+                <Button color={Colors.tintColor} title="Find Random Beer" onPress={() => this.getRandomBeer()}/>
             </View>
         );
     }
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: "bold",
         fontSize: 17,
-        color: "#383838"
+        color: Colors.titleColor
     },
     date: {
         fontWeight: "bold",

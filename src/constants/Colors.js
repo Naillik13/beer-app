@@ -7,4 +7,6 @@ export default {
   tabBar: '#fefefe',
   noticeBackground: tintColor,
   noticeText: '#fff',
+  textColor: '#666666',
+  titleColor: "#383838"
 };
