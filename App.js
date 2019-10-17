@@ -8,6 +8,7 @@ import TabBarIcon from "./src/components/TabBarIcon"
 import {Platform, Text} from "react-native"
 import AbvScreen from "./src/screens/AbvScreen";
 import SearchScreen from "./src/screens/SearchScreen";
+import FavoritesScreen from "./src/screens/FavoritesScreen";
 
 const HomeStack = createStackNavigator({
     Home: HomeScreen,
@@ -69,12 +70,33 @@ SearchStack.navigationOptions = {
 
 SearchStack.path = '';
 
+const FavoritesStack = createStackNavigator({
+    Favorites: FavoritesScreen,
+    Details: DetailsScreen,
+});
+
+FavoritesStack.navigationOptions = {
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+            focused={focused}
+            name={
+                Platform.OS === 'ios'
+                    ? `ios-heart-empty`
+                    : 'md-heart-empty'
+            }
+        />
+    ),
+};
+
+FavoritesStack.path = '';
+
 export default createAppContainer(
     createBottomTabNavigator(
         {
-            Abv: AbvStack,
             Home: HomeStack,
-            Search: SearchStack
+            Abv: AbvStack,
+            Search: SearchStack,
+            Favorites: FavoritesStack
 
         },
         {
