@@ -3,7 +3,7 @@ import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from "react-n
 import Colors from "../constants/Colors";
 import {StackActions} from "react-navigation";
 
-export default class BeerDetails extends React.Component {
+export default class BeerList extends React.Component {
     constructor(props) {
         super(props);
     }
